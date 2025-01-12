@@ -10,11 +10,6 @@ const PORT = process.env.PORT || 5000;
 app.post('/api/summarize', async (req, res) => {
   try {
     const { text } = req.body;
-
-    // TODO: Implement the actual summarization logic here
-    // This is where you'll make a request to your ML model deployed on AWS SageMaker
-
-    // For now, we'll just return a mock summary
     const summary = `This is a mock summary of the text: "${text.slice(0, 50)}..."`;
 
     res.json({ summary });
