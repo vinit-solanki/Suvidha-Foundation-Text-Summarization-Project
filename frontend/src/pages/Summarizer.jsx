@@ -55,21 +55,18 @@ function Summarizer() {
 
   // Generate summary based on mode
   const generateSummary = (text, mode, length) => {
-    // Split text into sentences
     const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
     const wordCount = text.split(/\s+/).length;
     const targetWordCount = Math.floor(wordCount * (length / 100));
 
     switch (mode) {
       case 'bullet':
-        // Extract key sentences and format as bullets
         const bulletPoints = sentences
           .slice(0, Math.ceil(sentences.length * (length / 100)))
           .map(s => `• ${s.trim()}`);
         return bulletPoints.join('\n');
 
       case 'key-points':
-        // Extract important phrases and keywords
         const keywords = text.split(/\s+/)
           .filter(word => word.length > 5)
           .slice(0, targetWordCount / 2)
@@ -78,7 +75,6 @@ function Summarizer() {
 
       case 'paragraph':
       default:
-        // Standard paragraph summary
         return sentences
           .slice(0, Math.ceil(sentences.length * (length / 100)))
           .join('. ') + '.';
@@ -131,27 +127,20 @@ function Summarizer() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
-      <div className="grid grid-cols-2 gap-6">
+    <div className="max-w-6xl mx-auto p-4 sm:p-6" style={{fontFamily:"cursive"}}>
+      <h1 className="text-2xl font-bold text-center mb-6">Suvidha Foundation Text Summarizer</h1>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Original text panel */}
         <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="mb-4">
-            <h2 className="text-lg font-semibold mb-2">Original Text</h2>
-            <p className="text-gray-600 text-sm">
-              Paste your text below (minimum 50 words)
-            </p>
-          </div>
-          
-          <div className="min-h-[400px] mb-4">
-            <textarea
-              className="w-full h-full p-4 border border-gray-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-green-500"
-              placeholder="Start typing or paste your text here..."
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-            />
-          </div>
-          
-          <div className="flex space-x-4">
+          <h2 className="text-lg font-semibold mb-4">Original Text</h2>
+          <p className="text-gray-600 text-sm mb-4">Paste your text below (minimum 50 words)</p>
+          <textarea
+            className="w-full h-80 p-4 border border-gray-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-green-500"
+            placeholder="Start typing or paste your text here..."
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
+          <div className="flex space-x-4 mt-4">
             <button 
               onClick={handlePaste}
               className="inline-flex items-center px-4 py-2 border border-green-600 text-green-600 rounded-md hover:bg-green-50"
@@ -239,7 +228,7 @@ function Summarizer() {
             />
           </div>
           
-          <div className="min-h-[400px] relative">
+          <div className="min-h-[200px] relative">
             {isProcessing ? (
               <div className="absolute inset-0 flex items-center justify-center bg-gray-50 rounded-lg">
                 <div className="flex flex-col items-center">
@@ -248,7 +237,7 @@ function Summarizer() {
                 </div>
               </div>
             ) : summary ? (
-              <div className="h-full">
+              <div className="h-80">
                 <textarea
                   className="w-full h-full p-4 bg-gray-50 rounded-lg resize-none"
                   value={summary}

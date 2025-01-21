@@ -12,12 +12,13 @@ function App() {
   return (
     <Router>
       <div className="flex h-screen bg-white">
-        <Sidebar />
+        {/* <Sidebar /> */}
         <div className="flex-1 flex flex-col overflow-hidden">
-          <Navbar />
+          {/* <Navbar /> */}
           <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50">
             <Routes>
               <Route path='/paraphraser' element={<Paraphraser/>}/>
+              <Route path='/' element={<Summarizer/>}/>
               <Route path='/summarizer' element={<Summarizer/>}/>
               <Route path="/ai-detector" element={<AIDetector />} />
               <Route path="/translator" element={<Translator />} />
