@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
-import Navbar from './components/Navbar';
+// import Sidebar from './components/Sidebar';
+// import Navbar from './components/Navbar';
 import AIDetector from './pages/AIDetector';
 import Translator from './pages/Translator';
 import GrammarChecker from './pages/GrammarChecker';
